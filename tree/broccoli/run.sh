@@ -33,7 +33,7 @@ case "${1:-}" in
     docker rmi "$NAME" >/dev/null 2>&1
     ;;
   *)
-    echo "usage: $0 {build|init|start|stop|clear}"
+    echo "usage: $0 {build|init|start|stop|export|clear}"
     ;;
 esac
 

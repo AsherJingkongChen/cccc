@@ -1,5 +1,5 @@
 {
-  "dmPolicy": "disabled",
+  "dmPolicy": "allowlist",
   "allowFrom": [],
   "groups": {
     "1488191738253414545": {

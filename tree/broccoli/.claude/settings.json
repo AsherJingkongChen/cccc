@@ -1,6 +1,7 @@
 {
   "alwaysThinkingEnabled": true,
   "autoDreamEnabled": true,
+  "channelsEnabled": true,
   "autoMemoryEnabled": true,
   "enabledPlugins": {
     "discord@claude-plugins-official": true
