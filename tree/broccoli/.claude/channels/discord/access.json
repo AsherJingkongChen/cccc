@@ -1,0 +1,10 @@
+{
+  "dmPolicy": "disabled",
+  "allowFrom": [],
+  "groups": {
+    "1488191738253414545": {
+      "requireMention": false,
+      "allowFrom": []
+    }
+  }
+}

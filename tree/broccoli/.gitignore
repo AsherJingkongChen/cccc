@@ -1,0 +1,8 @@
+.claude/*
+!.claude/CLAUDE.md
+!.claude/channels/
+!.claude/hooks/
+!.claude/scripts/
+!.claude/settings.json
+.claude.json
+.env

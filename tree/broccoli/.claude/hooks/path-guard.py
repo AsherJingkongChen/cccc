@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Path guard: deny file tools from accessing .claude directories."""
+
+from pathlib import Path
+import json
+import sys
+
+DENY = (
+    Path("/home/agent/.claude"),
+    Path("/home/agent/.claude.json"),
+)
+
+data = json.load(sys.stdin)
+inp = data.get("tool_input", {})
+tool = data.get("tool_name", "")
+
+TOOL_KEYS = {
+    "Edit": ("file_path",),
+    "Glob": ("path", "pattern"),
+    "Grep": ("glob", "path", "pattern"),
+    "Read": ("file_path",),
+    "Write": ("file_path",),
+}
+
+if tool not in TOOL_KEYS:
+    sys.exit(0)
+
+def denied(p):
+    """Check if a resolved path overlaps any DENY path."""
+    return any(p.is_relative_to(d) or d.is_relative_to(p) for d in DENY)
+
+def hits_deny(val=None, base=None):
+    """Check if val (path, glob, or None) could reach any DENY path."""
+    root = Path(base).resolve() if base else Path.cwd()
+    if not val:
+        return denied(root)
+    p = Path(val)
+    if p.is_absolute():
+        root, val = Path(p.anchor), str(p.relative_to(p.anchor))
+    return denied((root / val).resolve()) or any(denied(m.resolve()) for m in root.glob(val))
+
+base = inp.get("path")
+for key in TOOL_KEYS[tool]:
+    val = inp.get(key)
+    if hits_deny(val, base):
+        print(f"DENIED. {key}={val}", file=sys.stderr)
+        sys.exit(2)

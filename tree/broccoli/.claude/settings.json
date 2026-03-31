@@ -1,0 +1,43 @@
+{
+  "alwaysThinkingEnabled": true,
+  "autoDreamEnabled": true,
+  "autoMemoryEnabled": true,
+  "enabledPlugins": {
+    "discord@claude-plugins-official": true
+  },
+  "env": {
+    "DISCORD_STATE_DIR": "/home/agent/.claude/channels/discord"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "python3 /home/agent/.claude/hooks/path-guard.py",
+            "type": "command"
+          }
+        ]
+      }
+    ]
+  },
+  "includeCoAuthoredBy": false,
+  "language": "Chinese (zh-TW)",
+  "permissions": {
+    "defaultMode": "bypassPermissions"
+  },
+  "prefersReducedMotion": true,
+  "promptSuggestionEnabled": false,
+  "sandbox": {
+    "allowUnsandboxedCommands": false,
+    "enabled": true,
+    "filesystem": {
+      "allowWrite": ["/tmp"],
+      "denyRead": ["/home/agent/.claude", "/home/agent/.claude.json"]
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "command": "bash /home/agent/.claude/scripts/statusline-command.sh",
+    "type": "command"
+  }
+}
