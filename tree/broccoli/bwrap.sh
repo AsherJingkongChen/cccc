@@ -1,27 +1,18 @@
 #!/bin/bash
-# bwrap wrapper: inject GPU devices, strip network isolation.
+# Wrapper: replace bwrap with sandbox-lite (mount namespace only, no seccomp).
 
-GPU=()
-for p in /dev/nvidia* /proc/driver/nvidia; do
-  [ -e "$p" ] && GPU+=(--dev-bind "$p" "$p")
+# Extract command after -- (skip apply-seccomp if present)
+CMD=()
+found=false
+for a in "$@"; do
+  if $found; then
+    CMD+=("$a")
+  elif [ "$a" = "--" ]; then
+    found=true
+  fi
 done
-
-ALL=("$@")
-ARGS=()
-i=0
-while [ $i -lt ${#ALL[@]} ]; do
-  a="${ALL[$i]}"
-  case "$a" in
-    --unshare-net) ;;
-    --setenv)
-      key="${ALL[$((i+1))]}"
-      val="${ALL[$((i+2))]}"
-      case "$key" in *[Pp][Rr][Oo][Xx][Yy]*) i=$((i+2)) ;; *) ARGS+=("$a" "$key" "$val"); i=$((i+2)) ;; esac
-      ;;
-    --) ARGS+=("${GPU[@]}" "$a") ;;
-    *) ARGS+=("$a") ;;
-  esac
-  i=$((i+1))
+# Strip apply-seccomp from embedded shell script
+for i in "${!CMD[@]}"; do
+  CMD[$i]="$(echo "${CMD[$i]}" | sed 's|ARGV0=apply-seccomp /proc/self/fd/[0-9]* ||g')"
 done
-
-exec /usr/bin/bwrap.real "${ARGS[@]}"
+exec /usr/bin/sandbox-lite "${CMD[@]}"

@@ -24,9 +24,11 @@ case "${1:-}" in
     docker stop "$NAME"
     ;;
   export)
+    rm -rf "$DIR/.claude" "$DIR/.claude.json" "$DIR/work"
     docker cp "$NAME:/home/agent/.claude/." "$DIR/.claude"
     docker cp "$NAME:/home/agent/.claude.json" "$DIR/.claude.json"
-    chown -R "$(id -u):$(id -g)" "$DIR/.claude"
+    docker cp "$NAME:/home/agent/work/." "$DIR/work"
+    chown -R "$(id -u):$(id -g)" "$DIR/.claude" "$DIR/.claude.json" "$DIR/work"
     ;;
   clear)
     docker rm "$NAME" >/dev/null 2>&1

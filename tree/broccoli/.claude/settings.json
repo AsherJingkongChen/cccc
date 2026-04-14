@@ -1,44 +1,66 @@
 {
-  "alwaysThinkingEnabled": true,
-  "autoDreamEnabled": true,
-  "channelsEnabled": true,
-  "autoMemoryEnabled": true,
-  "enabledPlugins": {
-    "discord@claude-plugins-official": true
-  },
   "env": {
-    "DISCORD_STATE_DIR": "/home/agent/.claude/channels/discord"
+    "BASH_DEFAULT_TIMEOUT_MS": "900000",
+    "CLAUDE_AUTO_COMPACT_WINDOW": "400000",
+    "CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING": "1",
+    "CLAUDE_CODE_DISABLE_GIT_INSTRUCTIONS": "1",
+    "CLAUDE_CODE_EFFORT_LEVEL": "max",
+    "DISCORD_STATE_DIR": "/home/agent/.claude/channels/discord",
+    "MAX_THINKING_TOKENS": "100000"
+  },
+  "includeCoAuthoredBy": false,
+  "permissions": {
+    "defaultMode": "bypassPermissions"
   },
   "hooks": {
     "PreToolUse": [
       {
         "hooks": [
           {
-            "command": "python3 /home/agent/.claude/hooks/path-guard.py",
-            "type": "command"
+            "type": "command",
+            "command": "python3 /home/agent/.claude/hooks/path-guard.py"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/agent/.claude/hooks/context-info.py"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/agent/.claude/hooks/context-info.py"
           }
         ]
       }
     ]
   },
-  "includeCoAuthoredBy": false,
-  "language": "Chinese (zh-TW)",
-  "permissions": {
-    "defaultMode": "bypassPermissions"
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/agent/.claude/scripts/statusline-command.sh"
   },
-  "prefersReducedMotion": true,
-  "promptSuggestionEnabled": false,
+  "enabledPlugins": {
+    "discord@claude-plugins-official": true,
+    "rust-analyzer-lsp@claude-plugins-official": true
+  },
+  "language": "Chinese (zh-TW)",
   "sandbox": {
     "allowUnsandboxedCommands": false,
-    "enabled": true,
-    "filesystem": {
-      "allowWrite": ["/tmp"],
-      "denyRead": ["/home/agent/.claude", "/home/agent/.claude.json"]
-    }
+    "enabled": true
   },
-  "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "command": "bash /home/agent/.claude/scripts/statusline-command.sh",
-    "type": "command"
-  }
+  "alwaysThinkingEnabled": true,
+  "promptSuggestionEnabled": false,
+  "channelsEnabled": true,
+  "prefersReducedMotion": true,
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "showThinkingSummaries": true,
+  "skipDangerousModePermissionPrompt": true
 }

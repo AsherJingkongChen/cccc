@@ -6,8 +6,14 @@ import json
 import sys
 
 DENY = (
-    Path("/home/agent/.claude"),
     Path("/home/agent/.claude.json"),
+    Path("/home/agent/.claude/CLAUDE.md"),
+    Path("/home/agent/.claude/.credentials.json"),
+    Path("/home/agent/.claude/channels/discord/.env"),
+    Path("/home/agent/.claude/hooks"),
+    Path("/home/agent/.claude/scripts"),
+    Path("/home/agent/.claude/settings.json"),
+    Path("/home/agent/.claude/settings.local.json"),
 )
 
 data = json.load(sys.stdin)
