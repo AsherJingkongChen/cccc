@@ -13,7 +13,7 @@ case "${1:-}" in
     docker run -it \
       --privileged \
       --gpus all \
-      --memory=16g --cpus=8 \
+      --memory=24g --memory-swap=-1 --cpus=8 \
       --name "$NAME" \
       "$NAME"
     ;;

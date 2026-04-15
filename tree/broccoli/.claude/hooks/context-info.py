@@ -27,7 +27,7 @@ if tp and os.path.exists(tp):
             + last_usage.get("cache_creation_input_tokens", 0)
             + last_usage.get("cache_read_input_tokens", 0)
         )
-        window = int(os.environ.get("CLAUDE_AUTO_COMPACT_WINDOW", 1_000_000))
+        window = int(os.environ.get("CLAUDE_CODE_AUTO_COMPACT_WINDOW", 1_000_000))
         pct = total / window * 100
         parts.append(f"tok:{total}({pct:.0f}%)")
 
