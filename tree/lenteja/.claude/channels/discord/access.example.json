@@ -1,0 +1,10 @@
+{
+  "dmPolicy": "allowlist",
+  "allowFrom": [],
+  "groups": {
+    "1234": {
+      "requireMention": false,
+      "allowFrom": []
+    }
+  }
+}

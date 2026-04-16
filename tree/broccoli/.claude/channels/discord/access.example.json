@@ -2,7 +2,7 @@
   "dmPolicy": "allowlist",
   "allowFrom": [],
   "groups": {
-    "1488191738253414545": {
+    "1234": {
       "requireMention": false,
       "allowFrom": []
     }

@@ -1,11 +1,13 @@
 .claude/*
 !.claude/.litellm/
 !.claude/CLAUDE.md
-!.claude/channels/discord/access.json
+!.claude/channels/
 !.claude/hooks/
 !.claude/scripts/
 !.claude/settings.json
 .claude.json
+.claude/channels/discord/access.json
+.claude/channels/discord/inbox/
 .env
 work/*
 !work/.gitkeep
