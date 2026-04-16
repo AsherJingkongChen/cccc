@@ -1,0 +1,9 @@
+model_list:
+  - litellm_params:
+      drop_params: true
+      model: gemini/gemini-3-flash-preview
+    model_name: gemini-flash
+  - litellm_params:
+      drop_params: true
+      model: gemini/gemini-3.1-pro-preview
+    model_name: gemini-pro

@@ -11,7 +11,6 @@ DENY = (
     Path("/home/agent/.claude/.litellm"),
     Path("/home/agent/.claude/CLAUDE.md"),
     Path("/home/agent/.claude/channels/discord/.env"),
-    Path("/home/agent/.claude/channels/discord/access.json"),
     Path("/home/agent/.claude/history.jsonl"),
     Path("/home/agent/.claude/hooks"),
     Path("/home/agent/.claude/scripts"),

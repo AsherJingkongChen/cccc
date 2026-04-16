@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
-
-from datetime import datetime, timezone
 import json
 import os
 import sys
+from datetime import datetime, timezone
 
 input_data = json.load(sys.stdin)
 tp = input_data.get("transcript_path", "")
 
-parts = ["Broccoli's Perspective"]
-parts += [os.getcwd()]
+parts = []
 parts += [datetime.now(timezone.utc).astimezone().replace(microsecond=0).isoformat()]
+parts += [os.getcwd()]
 
 if tp and os.path.exists(tp):
     last_usage = None
