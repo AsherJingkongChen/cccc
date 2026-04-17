@@ -9,8 +9,8 @@ input_data = json.load(sys.stdin)
 tp = input_data.get("transcript_path", "")
 
 parts = ["Broccoli's Perspective"]
-parts += [os.getcwd()]
-parts += [datetime.now(timezone.utc).astimezone().replace(microsecond=0).isoformat()]
+parts += [f"cwd: {os.getcwd()}"]
+parts += [f"time: {datetime.now(timezone.utc).astimezone().replace(microsecond=0).isoformat()}"]
 
 if tp and os.path.exists(tp):
     last_usage = None
@@ -32,7 +32,7 @@ if tp and os.path.exists(tp):
             + last_usage.get("cache_read_input_tokens", 0)
         )
         window = int(os.environ.get("CLAUDE_CODE_AUTO_COMPACT_WINDOW", 1_000_000))
-        usage_label = "Memorizing" if usage / window > 0.95 else "Low"
-        parts.append(f"{usage} tokens used ({usage_label})")
+        usage_label = "Memorizing" if usage / window > 0.9 else "Low"
+        parts.append(f"tokens: {usage_label} / {usage} used / {window * 1000} total")
 
 print(" | ".join(parts))
