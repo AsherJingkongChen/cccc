@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 
 static const uint16_t banned_ports[] = {
-    4000,
+    // 4000,
 };
 static const size_t num_banned_ports = sizeof(banned_ports) / sizeof(*banned_ports);
 

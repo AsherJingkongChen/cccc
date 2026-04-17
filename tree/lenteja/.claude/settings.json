@@ -14,9 +14,6 @@
   },
   "includeCoAuthoredBy": true,
   "permissions": {
-    "deny": [
-      "Bash(cat *)"
-    ],
     "defaultMode": "bypassPermissions"
   },
   "model": "opus[1m]",
