@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 input_data = json.load(sys.stdin)
 tp = input_data.get("transcript_path", "")
 
-parts = []
+parts = ["Lenteja's Awareness"]
 parts += [datetime.now(timezone.utc).astimezone().replace(microsecond=0).isoformat()]
 parts += [os.getcwd()]
 
