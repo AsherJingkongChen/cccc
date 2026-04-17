@@ -7,3 +7,8 @@ model_list:
       drop_params: true
       model: gemini/gemini-3.1-pro-preview
     model_name: gemini-pro
+
+router_settings:
+  forward_client_headers_to_llm_api: true
+  forward_llm_provider_auth_headers: true
+  optional_pre_call_checks: ["prompt_caching"]
