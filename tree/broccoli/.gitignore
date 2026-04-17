@@ -1,4 +1,4 @@
-.claude*/
+.claude/*
 !.claude/.litellm/
 !.claude/CLAUDE.md
 !.claude/channels/
@@ -11,3 +11,4 @@
 .env
 work/*
 !work/.gitkeep
+*.bk
